@@ -1,0 +1,72 @@
+.service-card {
+  height: 300px;
+  overflow: hidden;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.img-wrapper {
+  height: 100%;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Dark overlay */
+.service-card::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+  transition: 0.3s;
+}
+
+/* Text above overlay */
+.card-img-overlay {
+  z-index: 2;
+}
+
+/* Hover Effects */
+.service-card:hover img {
+  transform: scale(1.1);
+}
+
+.service-card:hover::before {
+  background: rgba(0,0,0,0.6);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  transition: 0.3s;
+}
+
+.gradient-navbar {
+  background: linear-gradient(135deg,#01e7b5, #17544a);
+}
+
+.navbar .nav-link:hover {
+  color: #aa0992 !important;
+}
+/* Navbar links */
+.navbar .nav-link {
+  color: #ffffff !important;
+  transition: 0.3s;
+}
+
+
+/* Brand */
+.navbar .navbar-brand {
+  color: #ffffff !important;
+  letter-spacing: 1px;
+}
+
+.navbar .navbar-brand:hover {
+  color: #00ffd5 !important;
+}
