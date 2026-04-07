@@ -1,0 +1,80 @@
+//================          SIGN UP TABLE       ==================
+
+CREATE TABLE `sign_up`(
+`sid` int(3) Not null AUTO_INCREMENT PRIMARY KEY,
+`username` varchar(255) Not null,
+`email` varchar(255) NOT null,
+`password` varchar(255) NOT null,
+`contact` bigint(10) NOT null);
+
+//=======================           ADMIN TABLE         ====================
+
+CREATE TABLE `admin`(
+`id` int(3)NOT null AUTO_INCREMENT PRIMARY KEY,
+`name` varchar(255) NOT null,
+`email` varchar(255) NOT null,
+`password` varchar(255) NOT null);
+
+//=======================               INSERT QUERY        =============
+
+INSERT INTO `admin`(`name`, `email`, `password`) VALUES ('Kihala Vijay Bhai','kishustudio123@gmail.com','kishu123@')
+
+//=======================               UPDATE QUERY        =============
+
+UPDATE `admin` SET `name` = 'Kihala Vijay Bhai', `email` = 'kishustudio123@gmail.com', `password` = 'kishu123@' WHERE `admin`.`id` = 1;
+
+//========================          Categories QUERY        =========================
+
+CREATE TABLE categories (
+    id INT(3)NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cat_name VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+//====================            PHOTO QUERY               ====================
+
+CREATE TABLE photos (
+    id INT(3)NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cat_name VARCHAR(255)NOT NULL,
+    photo VARCHAR(255)NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+//====================            VIDEO QUERY               ====================
+
+CREATE TABLE videos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    video VARCHAR(255) NOT NULL,
+    cat_name VARCHAR(255) NOT NULL,
+    title VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+//====================              SERVICES QUERY          =================
+
+CREATE TABLE services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+//=========================             ORDERS TABLE QUERY          ===========================
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    service_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255)NOT NULL,
+    phone VARCHAR(15)NOT NULL,
+    event_date DATE NOT NULL,
+    message TEXT,
+    status ENUM('pending','completed','cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX (event_date, status)
+);

@@ -1,0 +1,194 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f7fa;
+}
+
+/* ===== NAVBAR ===== */
+.navbar-custom {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+    overflow: visible !important;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+/* LOGO */
+.logo-text {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* NAV LINKS */
+.nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    margin: 0 12px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -3px;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    transition: 0.4s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #ffb347 !important;
+}
+
+/* LOGIN BUTTON */
+.btn-login {
+    background: linear-gradient(45deg, #ff512f, #dd2476);
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(255,81,47,0.4);
+    transition: 0.4s;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,81,47,0.6);
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+    background: rgba(15,32,39,0.95);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+}
+
+/* ===== LOGIN MODAL ===== */
+.login-card {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #234b72, #2c5364, #4ca1af);
+    color: #fff;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.login-card .form-control {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    padding: 12px;
+    transition: 0.3s;
+}
+
+.login-card .form-control::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.login-card a {
+    color: #ff9a9e;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.login-card a:hover {
+    color: #ffb347;
+}
+
+.login-card .btn {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.login-card .btn:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* ===== REGISTER MODAL ===== */
+.signup-card {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    color: #fff;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.signup-card .form-control {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    padding: 12px;
+    transition: 0.3s;
+}
+
+.signup-card .form-control::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+
+.signup-card a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+.signup-card a:hover {
+    color: #ffb347;
+}
+
+.signup-card .btn.ultra-btn-outline {
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+}
+
+.signup-card .btn.ultra-btn-outline:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.signup-card .btn.ultra-btn {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.signup-card .btn.ultra-btn:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* CLOSE BUTTON FIX */
+.btn-close-white {
+    filter: invert(1);
+}
+
+/* RESPONSIVE */
+@media(max-width: 991px){
+    .navbar-nav { margin-top: 10px; }
+    .nav-link { margin: 5px 10px; }
+}
