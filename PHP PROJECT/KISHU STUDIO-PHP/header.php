@@ -9,15 +9,19 @@ if(isset($_POST['btn'])){
     $email = trim($_POST['uemail']);
     $password = trim($_POST['upassword']);
 
-    $result = mysqli_query($cn,"SELECT * FROM sign_up WHERE email='$email' AND password='$password'");
+    $result = mysqli_query($cn,"SELECT * FROM sign_up WHERE email='$email'");
 
     if(mysqli_num_rows($result) > 0){
         $user = mysqli_fetch_assoc($result);
 
-        $_SESSION['log-in'] = true;
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['sid'] = $user['sid'];
-        $_SESSION['username'] = $user['username'];
+        if(password_verify($password, $user['password'])){
+            $_SESSION['log-in'] = true;
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['sid'] = $user['sid'];
+            $_SESSION['username'] = $user['username'];
+        } else {
+            $error = "INCORRECT EMAIL OR PASSWORD";
+        }
     } else {
         $error = "INCORRECT EMAIL OR PASSWORD";
     }
@@ -29,6 +33,8 @@ if(isset($_POST['button'])){
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $contact = trim($_POST['contact']);
+    /* ✅ HASH PASSWORD */
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // ✅ CHECK EMAIL EXISTS
     $check = mysqli_query($cn,"SELECT * FROM sign_up WHERE email='$email'");
@@ -41,7 +47,7 @@ if(isset($_POST['button'])){
     } else {
 
         // ✅ INSERT NEW USER
-        mysqli_query($cn,"INSERT INTO sign_up SET username='$name', email='$email', password='$password', contact='$contact'");
+        mysqli_query($cn,"INSERT INTO sign_up SET username='$name', email='$email', password='$hashed_password', contact='$contact'");
 
         $_SESSION['success_msg'] = "Registered successfully! Please login.";
     }
@@ -118,6 +124,19 @@ if(isset($_POST['button'])){
             .dropdown.show .dropdown-menu{
                 display:block;
             }
+            /* ✅ MOBILE LOGIN BUTTON CENTER FIX */
+            @media (max-width: 991px){
+                .navbar .btn-login{
+                    display: block;
+                    margin: 10px auto;   /* center horizontally */
+                }
+
+                .navbar .dropdown{
+                    display: flex;
+                    justify-content: center; /* center username dropdown */
+                    margin-top: 10px;
+                }
+            }
         </style>
     </head>
 
@@ -160,7 +179,7 @@ if(isset($_POST['button'])){
                                 <i class="bi bi-person-circle"></i> Login
                             </button>
                     <?php endif; ?>
-
+                        
                 </div>
             </div>
         </nav>

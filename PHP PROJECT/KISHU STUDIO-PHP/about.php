@@ -143,7 +143,7 @@ body{
                     My style is natural, cinematic, and focused on real emotions.
                 </p>
 
-                <button class="btn-main">Book Now</button>
+                <button class="btn-main mb-3">Book Now</button>
 
                 <a href="https://instagram.com/kishu_studio_official" target="_blank" class="insta-btn">
                     <i class="fab fa-instagram"></i> Follow @kishu_studio_official

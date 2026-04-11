@@ -11,7 +11,7 @@ $videoMedia = [];
 
 <style>
 
-/* ===== PREMIUM BACKGROUND ===== */
+/* ===== BACKGROUND ===== */
 body{
     background: linear-gradient(135deg,#eef3f8,#f9fbfd);
 }
@@ -23,17 +23,6 @@ body{
     color:#234b72;
     text-align:center;
     margin-bottom:30px;
-    position:relative;
-}
-
-.section-title::after{
-    content:"";
-    width:80px;
-    height:3px;
-    background: linear-gradient(135deg,#234b72,#4ca1af);
-    display:block;
-    margin:10px auto;
-    border-radius:5px;
 }
 
 /* ===== CARD ===== */
@@ -47,43 +36,18 @@ body{
     box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* HOVER EFFECT */
 .gallery-card:hover{
     transform:translateY(-8px);
     box-shadow:0 20px 50px rgba(0,0,0,0.2);
 }
 
-/* IMAGE + VIDEO */
 .gallery-card img,
 .gallery-card video{
     width:100%;
     height:240px;
-    object-fit:contain;   /* 🔥 FULL IMAGE VISIBLE */
-    background:#f1f5f9;   /* clean background */
+    object-fit:contain;
+    background:#f1f5f9;
     padding:10px;
-}
-
-/* ZOOM */
-.gallery-card:hover img,
-.gallery-card:hover video{
-    transform:scale(1.08);
-}
-
-/* OVERLAY */
-.gallery-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: linear-gradient(180deg,transparent,rgba(0,0,0,0.5));
-    opacity:0;
-    transition:0.4s;
-}
-
-.gallery-card:hover::before{
-    opacity:1;
 }
 
 /* PLAY ICON */
@@ -91,25 +55,12 @@ body{
     position:absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%,-50%) scale(0.8);
+    transform:translate(-50%,-50%);
     font-size:40px;
     color:#fff;
-    background: linear-gradient(135deg,#234b72,#4ca1af);
-    padding:12px 18px;
+    background:#234b72;
+    padding:10px 15px;
     border-radius:50%;
-    opacity:0;
-    transition:0.4s;
-}
-
-.gallery-card:hover .play-icon{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
-}
-
-/* ===== VIDEO CARD ===== */
-.gallery-card.video-card{
-    background:transparent;
-    box-shadow:none;
 }
 
 /* ===== MODAL ===== */
@@ -124,14 +75,34 @@ body{
     align-items:center;
     justify-content:center;
     z-index:9999;
+    padding:20px;
 }
 
+/* CENTER CONTENT */
+#modalContent{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+}
+
+/* IMAGE + VIDEO */
 .modal-gallery img,
 .modal-gallery video{
-    max-width:85%;
-    max-height:85%;
+    max-width:100%;
+    max-height:90vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
     border-radius:12px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    animation:zoomIn 0.3s ease;
+}
+
+/* ANIMATION */
+@keyframes zoomIn{
+    from{ transform:scale(0.8); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
 }
 
 /* CLOSE */
@@ -152,29 +123,16 @@ body{
     font-size:45px;
     color:#fff;
     cursor:pointer;
-    opacity:0.7;
 }
 
-.arrow:hover{
-    opacity:1;
-}
-
-.left{ left:30px; }
-.right{ right:30px; }
-
-/* MOBILE */
-@media(max-width:768px){
-    .gallery-card img,
-    .gallery-card video{
-        height:200px;
-    }
-}
+.left{ left:20px; }
+.right{ right:20px; }
 
 </style>
 
 <div class="container mt-5 py-5">
 
-    <!-- PHOTOS -->
+    <!-- PHOTO -->
     <h2 class="section-title">📸 Photo Gallery</h2>
     <div class="row g-4 mb-5">
         <?php 
@@ -182,30 +140,30 @@ body{
         while($row = mysqli_fetch_array($photo_result)){ 
             $photoMedia[] = "admin/".$row['photo'];
         ?>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="gallery-card" onclick="openPhotoModal(<?php echo $i; ?>)">
-                    <img src="admin/<?php echo $row['photo']; ?>">
-                </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="gallery-card" onclick="openPhotoModal(<?php echo $i; ?>)">
+                <img src="admin/<?php echo $row['photo']; ?>">
             </div>
+        </div>
         <?php $i++; } ?>
     </div>
 
-    <!-- VIDEOS -->
-    <h2 class="section-title mt-5">🎬 Video Gallery</h2>
+    <!-- VIDEO -->
+    <h2 class="section-title">🎬 Video Gallery</h2>
     <div class="row g-4">
         <?php 
         $j = 0;
         while($row = mysqli_fetch_array($video_result)){ 
             $videoMedia[] = "admin/".$row['video'];
         ?>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="gallery-card video-card" onclick="openVideoModal(<?php echo $j; ?>)">
-                    <video muted>
-                        <source src="admin/<?php echo $row['video']; ?>" type="video/mp4">
-                    </video>
-                    <div class="play-icon">▶</div>
-                </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="gallery-card" onclick="openVideoModal(<?php echo $j; ?>)">
+                <video muted>
+                    <source src="admin/<?php echo $row['video']; ?>">
+                </video>
+                <div class="play-icon">▶</div>
             </div>
+        </div>
         <?php $j++; } ?>
     </div>
 
@@ -220,13 +178,14 @@ body{
 </div>
 
 <script>
+
 let photoMedia = <?php echo json_encode($photoMedia); ?>;
 let videoMedia = <?php echo json_encode($videoMedia); ?>;
 
 let currentIndex = 0;
 let currentType = "";
 
-// OPEN
+/* OPEN */
 function openPhotoModal(index){
     currentType = "photo";
     currentIndex = index;
@@ -241,13 +200,13 @@ function openVideoModal(index){
     showMedia();
 }
 
-// CLOSE
+/* CLOSE */
 function closeModal(){
     document.getElementById("galleryModal").style.display = "none";
     document.getElementById("modalContent").innerHTML = "";
 }
 
-// SHOW
+/* SHOW */
 function showMedia(){
     let content = "";
 
@@ -255,14 +214,14 @@ function showMedia(){
         content = `<img src="${photoMedia[currentIndex]}">`;
     } else {
         content = `<video controls autoplay>
-                        <source src="${videoMedia[currentIndex]}" type="video/mp4">
+                        <source src="${videoMedia[currentIndex]}">
                    </video>`;
     }
 
     document.getElementById("modalContent").innerHTML = content;
 }
 
-// NEXT / PREV
+/* NEXT */
 function nextMedia(){
     if(currentType === "photo"){
         currentIndex = (currentIndex + 1) % photoMedia.length;
@@ -272,6 +231,7 @@ function nextMedia(){
     showMedia();
 }
 
+/* PREV */
 function prevMedia(){
     if(currentType === "photo"){
         currentIndex = (currentIndex - 1 + photoMedia.length) % photoMedia.length;
@@ -281,16 +241,22 @@ function prevMedia(){
     showMedia();
 }
 
-// KEYBOARD
+/* KEYBOARD */
 document.addEventListener("keydown", function(e){
-    let modal = document.getElementById("galleryModal");
-
-    if(modal.style.display === "flex"){
+    if(document.getElementById("galleryModal").style.display === "flex"){
         if(e.key === "ArrowRight") nextMedia();
         if(e.key === "ArrowLeft") prevMedia();
         if(e.key === "Escape") closeModal();
     }
 });
+
+/* CLICK OUTSIDE CLOSE */
+document.getElementById("galleryModal").addEventListener("click", function(e){
+    if(e.target.id === "galleryModal"){
+        closeModal();
+    }
+});
+
 </script>
 
 <?php include "footer.php"; ?>

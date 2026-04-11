@@ -215,17 +215,17 @@ body{
                         on delivering high-quality visuals with a professional touch and artistic vision.
                     </p>
 
-                    <p>
+                    <p class="mb-4">
                         With a strong commitment to client satisfaction, we ensure every shoot reflects
                         emotions, elegance, and perfection.
                     </p>
 
-                    <a href="about.php" class="btn-main mt-3">Read More</a>
+                    <a href="about.php" class="btn-main mt-5">Read More</a>
                 </div>
 
                 <div class="col-md-6">
-                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32"
-                         class="img-fluid about-img">
+                    <img src="images/sony.jpg"
+                         class="img-fluid about-img mt-3">
                 </div>
 
             </div>
@@ -282,7 +282,7 @@ body{
 
         <h2 class="section-title mb-5">Latest Work</h2>
 
-        <div class="row g-4">
+        <div class="row g-4 mb-5">
 
             <?php 
             $result = mysqli_query($cn, "SELECT * FROM photos ORDER BY id DESC LIMIT 6");
@@ -303,7 +303,7 @@ body{
 
         </div>
 
-        <a href="gallery.php" class="btn-main mt-4">View Full Gallery</a>
+        <a href="gallery.php" class="btn-main mt-5">View Full Gallery</a>
     </div>
 </section>
 

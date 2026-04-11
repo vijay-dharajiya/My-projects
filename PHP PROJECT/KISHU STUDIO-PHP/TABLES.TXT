@@ -1,19 +1,21 @@
 //================          SIGN UP TABLE       ==================
 
-CREATE TABLE `sign_up`(
-`sid` int(3) Not null AUTO_INCREMENT PRIMARY KEY,
-`username` varchar(255) Not null,
-`email` varchar(255) NOT null,
-`password` varchar(255) NOT null,
-`contact` bigint(10) NOT null);
+CREATE TABLE `sign_up` (
+    `sid` INT AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(150) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL,
+    `contact` VARCHAR(15),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
 //=======================           ADMIN TABLE         ====================
 
 CREATE TABLE `admin`(
-`id` int(3)NOT null AUTO_INCREMENT PRIMARY KEY,
+`id` INT NOT null AUTO_INCREMENT PRIMARY KEY,
 `name` varchar(255) NOT null,
 `email` varchar(255) NOT null,
-`password` varchar(255) NOT null);
+`password` varchar(255) NOT null,
+`created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
 //=======================               INSERT QUERY        =============
 
